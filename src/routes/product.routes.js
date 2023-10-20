@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router(); //localhost:3000/product /crear
 const { Product, Category } = require("../db");
 
+
 router.get("/", async (req, res) => {
   console.log("Peticion iniciada en la ruta");
   try {
@@ -14,6 +15,23 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:category", async (req, res) => {
+  console.log("Peticion iniciada en la ruta");
+  try {
+    let {category} = req.params
+    console.log(category);
+    let allProducts = await Product.findAll({ include: { model: Category } });
+    let filterProducts = allProducts.filter((prod)=> prod.Category.title === category)
+
+    res.status(200).json(filterProducts);
+  } catch (error) {
+    console.error(error);
+    res.status(400).send("Error buscando los productos");
+  }
+});
+
+
+
 router.post("/", async (req, res) => {
   try {
     let body = req.body;
@@ -22,7 +40,7 @@ router.post("/", async (req, res) => {
     await category.addProduct(newProduct);
     res.status(200).json("Producto creado correctamente");
   } catch (error) {
-    res.status(400).send("Error al crear el Producto");
+    res.status(400).json(error);
   }
 });
 
@@ -42,9 +60,9 @@ router.get("/:id", (req, res) => {
 
 router.post("/crear", (req, res) => {
   try {
-    let newProduct = req.body;
+    let body = req.body;
 
-    console.log(newProduct);
+    console.log(body.newProduct);
 
     res.status(200).json("producto creado correctamente"); //al body de nuestro cliente
   } catch (error) {

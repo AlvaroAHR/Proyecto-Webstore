@@ -27,3 +27,18 @@ Template SQL sequelize
 
 ## Si cloné este repo:
 `npm install` o `npm i`
+
+{
+ "newProduct":{
+    "title": "Televisor LED",
+    "price": 150,
+    "description": "LG 55p",
+    "stock": 4,
+    "img": "product-1.jpg"
+  },
+  "category": "Electronics"
+}
+
+{
+    "title": "Hogar"
+}

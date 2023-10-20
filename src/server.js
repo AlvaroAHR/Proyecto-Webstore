@@ -15,4 +15,6 @@ server.use(cors());
 /* Para los endpoints */
 server.use("/", routes); //localhost:3000/
 
+server.use("/", express.static("fe"));
+
 module.exports = server;

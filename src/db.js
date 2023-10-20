@@ -6,10 +6,10 @@ const CategoryModel = require("./models/Category");
 
 /* VARIABLES DE ENTORNO */
 const USER_DB = "postgres";
-const PASS_DB = "alvaro1/";
+const PASS_DB = "admin123";
 const HOST_DB = "localhost";
 const PORT_DB = "5432";
-const NAME_DB = "carStore";
+const NAME_DB = "webStore";
 
 /* Inicio una instancia de sequelize y conecto con la base de datos */
 const sequelize = new Sequelize(
